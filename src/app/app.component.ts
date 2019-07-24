@@ -16,9 +16,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'My Account',
+      url: '/my-account',
+      icon: 'person'
+    },
+    {
+      title: 'My Attendence',
+      url: '/my-attendence',
+      icon: 'finger-print'
+    },
+    {
+      title: 'Messages',
+      url: '/messages',
+      icon: 'chatboxes'
     }
   ];
 
