@@ -1,0 +1,9 @@
+.btn-primary{
+    background: $color-primary;
+    border:1px solid transparent;
+    padding: 1rem 2rem;
+    &:focus{
+        background: $color-primary-shade;
+        border: 1px solid $color-primary;
+    }
+}
