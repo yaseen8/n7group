@@ -1,5 +1,7 @@
 {
   "name": "n7group",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
