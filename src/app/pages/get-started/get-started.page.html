@@ -1,16 +1,34 @@
 
-    <ion-header>
-        <ion-toolbar color="dark">
-          <ion-title color="primary"></ion-title>
-        </ion-toolbar>
-      </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary"></ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
-<ion-content>
-  <ion-grid class="d-flex ion-content-wraper ion-justify-content-center ion-align-items-center">
-      <ion-row class="d-flex ion-justify-content-center">
+<ion-content padding >
+  <ion-grid padding >
+    <ion-row class="gutter-vertical-large"></ion-row>
+      <ion-row>
           <ion-col>
-              <h1 class="text-center text-white">Get-Started</h1>
+              <ion-text class="ion-text-center" color="light">
+                  <h1 class="text-center text-white heading-primary">Get-Started!</h1>
+              </ion-text>
+          </ion-col>
+      </ion-row>
+
+      <ion-row class="gutter-vertical-huge"></ion-row>
+
+      <ion-row class="d-flex flex-column ion-justify-content-center">
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom padding-bottom class="ion-text-center d-block label-primary">Enter your email</ion-label>
+                <ion-input  
+                  type="email"
+                  placeholder="email@example.com"
+                  class="n7g-input m-auto mt-4"></ion-input>
+            </div>
+            <ion-buttons class="m-auto mt-4 btn-primary">Submit</ion-buttons>
           </ion-col>
       </ion-row>
   </ion-grid>

@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent  {
+  
   public appPages = [
     {
       title: 'Home',
@@ -32,6 +33,15 @@ export class AppComponent  {
       icon: 'chatboxes'
     }
   ];
+  title:any;
+
+  user={
+    firstName: "John",
+    lastName: "Smith",
+    address: "1045 Aurora Blvd, Quezon City, 1109 Metro Manila, Philippines",
+    timingFrom: "8:00 AM",
+    timingTo: "6:00 PM"
+  }
 
   constructor(
     private platform: Platform,

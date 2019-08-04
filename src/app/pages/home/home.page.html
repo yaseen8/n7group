@@ -1,14 +1,97 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header >
+    <ion-toolbar  class="text-center">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ml-n4"> 
+          <ion-text class="u-title-center"> {{ title }} </ion-text>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
-   <h3>Home</h3>
+<ion-content padding>
+  <ion-grid padding >
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div margin-bottom>
+              <ion-text>
+                <h1 class="heading-primary m-0">
+                    Hello!  {{ user.name }}
+                </h1>
+              </ion-text>
+              <ion-text margin-bottom >
+                <h1 class="label-primary m-0">
+                    Monday August 4th, 2019
+                </h1>
+              </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div margin-bottom>
+              <ion-text>
+                <h1 class="heading-secondary m-0">
+                    Job Location
+                </h1>
+              </ion-text>
+              <ion-text margin-bottom >
+                <h1 class="label-primary m-0">
+                    {{ user.address }}
+                </h1>
+              </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div margin-bottom>
+              <ion-text>
+                <h1 class="heading-secondary m-0">
+                    Job Timings
+                </h1>
+              </ion-text>
+              <ion-text margin-bottom >
+                <h1 class="label-primary m-0">
+                    {{ user.timingFrom }} -- {{ user.timingTo }}
+                </h1>
+              </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div margin-bottom>
+              <ion-text>
+                <h1 class="heading-secondary m-0">
+                    Status
+                </h1>
+              </ion-text>
+              <ion-text margin-bottom>
+                <h1 class="label-primary text-danger font-weight-light m-0">
+                    Not checked In
+                </h1>
+              </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+
+      <ion-row class="gutter-vertical-huge"></ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+              <ion-buttons class="m-auto mt-4 btn-primary">Check In</ion-buttons>
+          </ion-col>
+      </ion-row>
+
+
+
+
+  </ion-grid>
 </ion-content>

@@ -1,0 +1,18 @@
+@import "src/theme/variables.scss";
+
+.message{
+    padding: .6rem 1.5rem;
+    border-radius: 5px;
+    &-head{
+        color: $color-dark;
+        margin:0;
+    }
+    &-guard{
+        background: lighten($color-dark, 15);
+        color: $color-light;
+    }
+    &-employee{
+        background: darken($color-light, 15);
+        color: $color-dark;
+    }
+}

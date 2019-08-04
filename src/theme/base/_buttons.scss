@@ -1,8 +1,12 @@
 .btn-primary{
+    display: flex;
+    justify-content: center;
     background: $color-primary;
     border:1px solid transparent;
     padding: 1rem 2rem;
-    &:focus{
+    min-width: 9rem;
+    width: fit-content;
+    &:focus, &:hover{
         background: $color-primary-shade;
         border: 1px solid $color-primary;
     }

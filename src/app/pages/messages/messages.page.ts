@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesPage implements OnInit {
 
+  title = "Messages";
+
   constructor() { }
 
   ngOnInit() {

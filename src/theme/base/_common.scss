@@ -1,0 +1,30 @@
+.ion{
+    &-content-wraper{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+ion{
+    &-header, &-toolbar{
+        background: $color-secondary-shade;
+    }
+
+    &-content{
+        background: $color-secondary;
+        border-top: 3px solid $color-primary;
+    }
+    
+  }
+
+  //override defaults
+  .item-native{
+    display: flex;
+    flex-flow: column wrap;
+    border:0;
+  }

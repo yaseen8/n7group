@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetStartedPage implements OnInit {
 
+  title="Get Started";
+
   constructor() { }
 
   ngOnInit() {

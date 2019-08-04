@@ -15,6 +15,11 @@
         background: $color-secondary;
     }
 
+    &-title-center{
+        display: inline-block;
+        transform: translateX(-50%);
+    }
+
 }
 
 

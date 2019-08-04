@@ -1,9 +1,81 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
+<ion-header >
+  <ion-toolbar class="text-center">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ml-n4"> {{ title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <ion-grid padding >
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Full Name</ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="John Smith"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+      
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Contact</ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="182 2454 3467"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Street Address</ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Your Street Address"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Next of Kin</ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Kin's Name"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Relation to Kin</ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="e.g. Mother"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <ion-buttons class="m-auto mt-4 btn-primary">Submit</ion-buttons>
+          </ion-col>
+      </ion-row>
+
+  </ion-grid>
 
 </ion-content>

@@ -14,7 +14,11 @@
 @import "theme/variables.scss";
 
 // base 
-@import "theme/base/buttons.scss";
-@import "theme/base/utilities.scss";
-@import "theme/base/common.scss";
+@import "theme/base/buttons";
+@import "theme/base/utilities";
+@import "theme/base/common";
+@import "theme/base/typography";
+@import "theme/base/forms";
+@import "theme/base/spacing";
+
 @import "theme/base/bs4-utilities.min.css";  //this files contains only bootstrap4 utility classes only, added to handle code in most familier and smoother way, other clases like container, row or col etc. will not work
