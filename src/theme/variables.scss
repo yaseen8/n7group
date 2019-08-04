@@ -134,6 +134,7 @@ $color-dark-contrast-rgb: 255, 255, 255;
 $color-dark-shade: #1e2023;
 $color-dark-tint: #383a3e;
 
+
 /** medium **/
 $color-medium: #989aa2;
 $color-medium-rgb: 152, 154, 162;
@@ -149,3 +150,18 @@ $color-light-contrast: #000000;
 $color-light-contrast-rgb: 0, 0, 0;
 $color-light-shade: #d7d8da;
 $color-light-tint: #f5f6f9;
+
+
+// ionic variables
+$color: (
+  primary: #ba8609,
+  secondary: #292e35,
+  tertiary: #7044ff,
+  success: #10dc60,
+  warning: #ffce00,
+  danger: #f04141,
+  dark: #222428,
+  medium: #989aa2,
+  light: #f4f5f8,
+)
+  
