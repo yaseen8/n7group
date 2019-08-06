@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-account.page.scss'],
 })
 export class MyAccountPage implements OnInit {
+  title = "My Account";
 
   constructor() { }
 
