@@ -14,44 +14,128 @@
 
       <ion-row margin-bottom>
           <ion-col>
-            <div margin-bottom>
-                <ion-label margin-bottom class="label-primary">Full Name</ion-label>
-                <ion-input  
-                  type="text"
-                  placeholder="John Smith"
-                  class="n7g-input m-0 mt-2"></ion-input>
+            <div margin-bottom  class="text-center">
+                <ion-text margin-bottom class="heading-primary"> New Employee Form </ion-text>
             </div>
           </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col margin-bottom>
+            <div>
+                <ion-label margin-bottom class="label-primary"> Hiring Company </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Company Name"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+                <ion-list color="transparent" class="d-flex justify-content-between">
+                    <ion-item class="ml-n4">
+                      <ion-radio  ng-value="'dHire'" name="hiringOptions"></ion-radio>
+                      <ion-label class="ml-4">Direct Hire</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-radio  ng-value="'Transfer'" name="hiringOptions"></ion-radio>
+                      <ion-label class="ml-4" >Transfer</ion-label>
+                    </ion-item>
+                   
+                </ion-list>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+        <ion-col>
+          <div class="text-center">
+              <ion-text class="heading-secondary"> Personal Details </ion-text>
+          </div>
+        </ion-col>
       </ion-row>
       
       <ion-row margin-bottom >
           <ion-col>
             <div margin-bottom>
-                <ion-label margin-bottom class="label-primary">Contact</ion-label>
-                <ion-input  
-                  type="number"
-                  placeholder="182 2454 3467"
-                  class="n7g-input m-0 mt-2"></ion-input>
-            </div>
-          </ion-col>
-      </ion-row>
-
-      <ion-row margin-bottom >
-          <ion-col>
-            <div margin-bottom>
-                <ion-label margin-bottom class="label-primary">Street Address</ion-label>
+                <ion-label margin-bottom class="label-primary">Guard names</ion-label>
                 <ion-input  
                   type="text"
-                  placeholder="Your Street Address"
+                  placeholder="Guard names"
                   class="n7g-input m-0 mt-2"></ion-input>
             </div>
           </ion-col>
       </ion-row>
 
       <ion-row margin-bottom >
+        <ion-col>
+          <div margin-bottom>
+              <ion-label margin-bottom class="label-primary">Surname</ion-label>
+              <ion-input  
+                type="text"
+                placeholder="Surname"
+                class="n7g-input m-0 mt-2"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+        <ion-col>
+          <div margin-bottom>
+              <ion-label margin-bottom class="label-primary">Date of Birth</ion-label>
+              <ion-input  
+                type="date"
+                placeholder="Date of Birth"
+                class="n7g-input m-0 mt-2"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
           <ion-col>
             <div margin-bottom>
-                <ion-label margin-bottom class="label-primary">Next of Kin</ion-label>
+                <ion-label margin-bottom class="label-primary">Address</ion-label>
+                <ion-textarea  
+                  type="text"
+                  placeholder="Your Complete Address"
+                  class="n7g-input m-0 mt-2"></ion-textarea>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+        <ion-col>
+          <div margin-bottom>
+              <ion-label margin-bottom class="label-primary">Mobile Number</ion-label>
+              <ion-input  
+                type="number"
+                placeholder="Enter Your Mobile Number"
+                class="n7g-input m-0 mt-2"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+        <ion-col>
+          <div margin-bottom>
+              <ion-label margin-bottom class="label-primary">Email</ion-label>
+              <ion-input  
+                type="email"
+                placeholder="Enter Your Email Adress"
+                class="n7g-input m-0 mt-2"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Next of Kin - Name</ion-label>
                 <ion-input  
                   type="text"
                   placeholder="Kin's Name"
@@ -61,16 +145,420 @@
       </ion-row>
 
       <ion-row margin-bottom >
+        <ion-col>
+          <div margin-bottom>
+              <ion-label margin-bottom class="label-primary">Next of Kin - Contact Detail</ion-label>
+              <ion-input  
+                type="text"
+                placeholder="Kin's Contact Detail"
+                class="n7g-input m-0 mt-2"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+        <ion-col>
+          <div  class="text-center">
+              <ion-text class="heading-secondary"> Mode of Pay <br/> Main Account </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <ion-list color="transparent" class="d-flex justify-content-between">
+
+              <ion-item class="ml-n4">
+                <ion-radio  ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                <ion-label class="ml-4">Cheque</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-radio  ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                <ion-label class="ml-4" >TFN</ion-label>
+              </ion-item>
+
+              <ion-item>
+                  <ion-radio  ng-value="'Bank'" name="hiringOptions"></ion-radio>
+                  <ion-label class="ml-4" >Bank</ion-label>
+              </ion-item>
+             
+            </ion-list>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
           <ion-col>
             <div margin-bottom>
-                <ion-label margin-bottom class="label-primary">Relation to Kin</ion-label>
+                <ion-label margin-bottom class="label-primary"> Bank Name </ion-label>
                 <ion-input  
                   type="text"
-                  placeholder="e.g. Mother"
+                  placeholder="Bank Name"
                   class="n7g-input m-0 mt-2"></ion-input>
             </div>
           </ion-col>
       </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> BSB </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Bank-State-Branch number"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Account Number </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Bank Account Number"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Rate </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Rate"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Site Allocated </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Site location"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Additional Rate If Applicable </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Additional Rate If Applicable"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Site Name for Additional Rate </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Site Name for Additional Rate"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row >
+          <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div  class="text-center">
+                <ion-text class="heading-secondary"> Tax Details </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                
+                <div color="transparent" class="d-flex justify-content-between">
+                    <ion-text margin-bottom class="label-primary"> Claim the tax-free threshold </ion-text>
+
+                    <ion-list class="d-flex justify-content-between">
+                        <ion-item class="ml-n4">
+                            <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4">Yes</ion-label>
+                          </ion-item>
+            
+                          <ion-item>
+                            <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4" >No</ion-label>
+                          </ion-item>
+
+                    </ion-list>
+
+                </div>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                
+                <div color="transparent" class="d-flex justify-content-between">
+                    <ion-text margin-bottom class="label-primary"> Australian resident for tax purposes </ion-text>
+
+                    <ion-list class="d-flex justify-content-between">
+                        <ion-item class="ml-n4">
+                            <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4">Yes</ion-label>
+                          </ion-item>
+            
+                          <ion-item>
+                            <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4" >No</ion-label>
+                          </ion-item>
+
+                    </ion-list>
+
+                </div>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                
+                <div color="transparent" class="d-flex justify-content-between">
+                    <ion-text margin-bottom class="label-primary"> Higher Education Loan Debt (HELP) </ion-text>
+
+                    <ion-list class="d-flex justify-content-between">
+                        <ion-item class="ml-n4">
+                            <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4">Yes</ion-label>
+                          </ion-item>
+            
+                          <ion-item>
+                            <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4" >No</ion-label>
+                          </ion-item>
+
+                    </ion-list>
+
+                </div>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                
+                <div color="transparent" class="d-flex justify-content-between">
+                    <ion-text margin-bottom class="label-primary"> Financial Supplement debt </ion-text>
+
+                    <ion-list class="d-flex justify-content-between">
+                        <ion-item class="ml-n4">
+                            <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4">Yes</ion-label>
+                          </ion-item>
+            
+                          <ion-item>
+                            <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                            <ion-label class="ml-4" >No</ion-label>
+                          </ion-item>
+
+                    </ion-list>
+
+                  </div>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Additional Information </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Additional Information"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row >
+          <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div  class="text-center">
+                <ion-text class="heading-secondary"> Superannuation </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Name of Fund </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Name of Fund"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Name of Account </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Name of Account"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Membership Number </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Membership Number"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row >
+          <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom>
+          <ion-col>
+            <div  class="text-center">
+                <ion-text class="heading-secondary"> Licence Details </ion-text>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Security Licence Number </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Security Licence Number"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
+                <ion-input  
+                  type="date"
+                  placeholder="Expiry Date"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                
+                <div color="transparent" class="d-flex justify-content-between">
+                    <ion-text margin-bottom class="label-primary mr-3"> RSA/RSG (Tick only) </ion-text>
+
+                    <ion-list class="d-flex justify-content-between">
+                        <ion-item class="ml-n4">
+                            <ion-label >RSA</ion-label>
+                            <ion-radio class="ml-4" ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                          </ion-item>
+            
+                          <ion-item>
+                            <ion-label >RSG</ion-label>
+                            <ion-radio class="ml-4"  ng-value="'TFN'" name="hiringOptions"></ion-radio>
+                          </ion-item>
+
+                    </ion-list>
+
+                  </div>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Driver’s Licence Number </ion-label>
+                <ion-input  
+                  type="number"
+                  placeholder="Driver’s Licence Number"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> State </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="State"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
+                <ion-input  
+                  type="text"
+                  placeholder="Expiry Date"
+                  class="n7g-input m-0 mt-2"></ion-input>
+            </div>
+          </ion-col>
+      </ion-row>
+
+      <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary"> Notes </ion-label>
+                <ion-textarea  
+                  type="text"
+                  placeholder="Notes"
+                  class="n7g-input m-0 mt-2"></ion-textarea>
+            </div>
+          </ion-col>
+      </ion-row>
+
+
+
+
 
       <ion-row margin-bottom >
           <ion-col>
