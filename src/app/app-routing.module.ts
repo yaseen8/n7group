@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'my-attendence', loadChildren: './pages/my-attendence/my-attendence.module#MyAttendencePageModule' },
   { path: 'messages', loadChildren: './pages/messages/messages.module#MessagesPageModule' },
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
-  { path: 'get-started', loadChildren: './pages/get-started/get-started.module#GetStartedPageModule' }
+  { path: 'get-started', loadChildren: './pages/get-started/get-started.module#GetStartedPageModule' },
+  { path: 'sign-in', loadChildren: './pages/sign-in/sign-in.module#SignInPageModule' },
 ];
 
 @NgModule({
