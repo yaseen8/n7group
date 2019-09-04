@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-    private webRoot: string = 'http://127.0.0.1:8000/api/';
-    // private webRoot: string = 'http://www.alphazzz.com/n7/public/api/';
+    // private webRoot: string = 'http://127.0.0.1:8000/api/';
+    private webRoot: string = 'http://www.alphazzz.com/n7/public/api/';
 
 
   constructor() { }
