@@ -8,6 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {HttpAuthInterceptor} from "./services/interceptor/http.auth.interceptor";
+import {HttpAdditionalHeaderInterceptor} from "./services/interceptor/http-additional-header.interceptor";
+import {HttpErrorInterceptor} from "./services/interceptor/http-error.interceptor";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,12 +24,21 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: HttpAdditionalHeaderInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+      Geolocation,
+      Diagnostic,
+      LocationAccuracy,
+      BackgroundGeolocation
   ],
   bootstrap: [AppComponent]
 })

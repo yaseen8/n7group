@@ -1,8 +1,5 @@
 <ion-header >
   <ion-toolbar class="text-center">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title class="ml-n4"> 
         <ion-text class="u-title-center"> {{ title }} </ion-text>
     </ion-title>
@@ -11,7 +8,7 @@
 
 <ion-content padding>
   <ion-grid padding >
-
+    <form [formGroup] = "fg">
       <ion-row margin-bottom>
           <ion-col>
             <div margin-bottom  class="text-center">
@@ -28,22 +25,35 @@
           <ion-col margin-bottom>
             <div>
                 <ion-label margin-bottom class="label-primary"> Hiring Company </ion-label>
-                <ion-input  
-                  type="text"
-                  placeholder="Company Name"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                <ion-select interface="popover"  name="company"  formControlName="company" required>
+                    <ion-select-option *ngFor="let comp of companyList" [value]="comp.id" >{{comp.name}}</ion-select-option>
+                  </ion-select>
+                  <p *ngIf="fg.get('company').dirty && hasError('company', 'required')" style="color : red">Company is required</p>
             </div>
-                <ion-list color="transparent" class="d-flex justify-content-between">
-                    <ion-item class="ml-n4">
-                      <ion-radio  ng-value="'dHire'" name="hiringOptions"></ion-radio>
+                <ion-list color="transparent" class="d-flex justify-content-between ml-n4" >
+                    <ion-radio-group name="hire"  formControlName="hire" required>      
+                        <ion-item>
+                          <ion-label>Direct</ion-label>
+                          <ion-radio slot="start" value="direct" checked></ion-radio>
+                        </ion-item>
+                    
+                        <ion-item>
+                          <ion-label>Transfer</ion-label>
+                          <ion-radio slot="start" value="transfer"></ion-radio>
+                        </ion-item>
+                
+                      </ion-radio-group>   
+                  
+                  <!-- <ion-item class="ml-n4">
+                      <ion-radio  ng-value="'direct'" name="hire"></ion-radio>
                       <ion-label class="ml-4">Direct Hire</ion-label>
                     </ion-item>
 
                     <ion-item>
-                      <ion-radio  ng-value="'Transfer'" name="hiringOptions"></ion-radio>
+                      <ion-radio  ng-value="'transfer'" name="hire"></ion-radio>
                       <ion-label class="ml-4" >Transfer</ion-label>
-                    </ion-item>
-                   
+                    </ion-item> -->
+                    <p *ngIf="fg.get('hire').dirty && hasError('hire', 'required')" style="color : red">Hiring type is required</p>
                 </ion-list>
           </ion-col>
       </ion-row>
@@ -66,8 +76,10 @@
                 <ion-label margin-bottom class="label-primary">Guard names</ion-label>
                 <ion-input  
                   type="text"
+                  name="name"  formControlName="name" required
                   placeholder="Guard names"
                   class="n7g-input m-0 mt-2"></ion-input>
+                  <p *ngIf="fg.get('name').dirty && hasError('name', 'required')" style="color : red">Name is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -79,19 +91,55 @@
               <ion-input  
                 type="text"
                 placeholder="Surname"
+                name="surname"  formControlName="surname" required
                 class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('surname').dirty && hasError('surname', 'required')" style="color : red">Surname is required</p>
           </div>
         </ion-col>
       </ion-row>
 
       <ion-row margin-bottom >
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom class="label-primary">Email</ion-label>
+                <ion-input  
+                  type="email"
+                  name="email"  formControlName="email" required
+                  placeholder="Enter Your Email Adress"
+                  class="n7g-input m-0 mt-2" disabled></ion-input>
+                <!-- <p *ngIf="fg.get('email').dirty && hasError('email', 'required')" style="color : red">Email is required</p>
+                <p *ngIf ="hasError('email', 'email')" style="color : red">Please enter a valid email.</p>
+                <p *ngIf ="!requestedEmail" style="color : red">This email is not in requested list. please provide valid email</p>
+                <p *ngIf ="emailExist" style="color : red">This email is already registered, try different email.</p> -->
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row margin-bottom >
+            <ion-col>
+              <div margin-bottom>
+                  <ion-label margin-bottom class="label-primary">Password</ion-label>
+                  <ion-input  
+                    type="password"
+                    placeholder="Password"
+                    name="password"  formControlName="password" required
+                    class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('password').dirty && hasError('password', 'required')" style="color : red">Password is required</p>
+              </div>
+            </ion-col>
+          </ion-row>
+
+      <ion-row margin-bottom >
         <ion-col>
           <div margin-bottom>
-              <ion-label margin-bottom class="label-primary">Date of Birth</ion-label>
-              <ion-input  
+              <ion-label margin-bottom >Date of Birth</ion-label>
+              <ion-datetime display-format="DD MMM, YYYY"  name="dob"  formControlName="dob" required ></ion-datetime>
+              <!-- <ion-input  
                 type="date"
                 placeholder="Date of Birth"
-                class="n7g-input m-0 mt-2"></ion-input>
+                name="dob"  formControlName="dob" required
+                class="n7g-input m-0 mt-2"></ion-input> -->
+                <p *ngIf="fg.get('dob').dirty && hasError('dob', 'required')" style="color : red">Date of Birth is required</p>
           </div>
         </ion-col>
       </ion-row>
@@ -102,8 +150,10 @@
                 <ion-label margin-bottom class="label-primary">Address</ion-label>
                 <ion-textarea  
                   type="text"
+                  name="address"  formControlName="address" required
                   placeholder="Your Complete Address"
                   class="n7g-input m-0 mt-2"></ion-textarea>
+                <p *ngIf="fg.get('dob').dirty && hasError('dob', 'required')" style="color : red">Date of Birth is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -115,22 +165,14 @@
               <ion-input  
                 type="number"
                 placeholder="Enter Your Mobile Number"
+                name="phone"  formControlName="phone" required
                 class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('phone').dirty && hasError('phone', 'required')" style="color : red">Mobile Number is required</p>
           </div>
         </ion-col>
       </ion-row>
 
-      <ion-row margin-bottom >
-        <ion-col>
-          <div margin-bottom>
-              <ion-label margin-bottom class="label-primary">Email</ion-label>
-              <ion-input  
-                type="email"
-                placeholder="Enter Your Email Adress"
-                class="n7g-input m-0 mt-2"></ion-input>
-          </div>
-        </ion-col>
-      </ion-row>
+
 
       <ion-row margin-bottom >
           <ion-col>
@@ -138,8 +180,10 @@
                 <ion-label margin-bottom class="label-primary">Next of Kin - Name</ion-label>
                 <ion-input  
                   type="text"
+                  name="nokName"  formControlName="nokName" required
                   placeholder="Kin's Name"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('nokName').dirty && hasError('nokName', 'required')" style="color : red">Next of kin name is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -150,8 +194,10 @@
               <ion-label margin-bottom class="label-primary">Next of Kin - Contact Detail</ion-label>
               <ion-input  
                 type="text"
+                name="nokContact"  formControlName="nokContact" required
                 placeholder="Kin's Contact Detail"
                 class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('nokContact').dirty && hasError('nokContact', 'required')" style="color : red">Next of kin contact is required</p>
           </div>
         </ion-col>
       </ion-row>
@@ -170,9 +216,26 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <ion-list color="transparent" class="d-flex justify-content-between">
+            <ion-list color="transparent" class="d-flex justify-content-between ml-n4" >
 
-              <ion-item class="ml-n4">
+                <ion-radio-group name="payment_mode"  formControlName="payment_mode">      
+                    <ion-item>
+                      <ion-label>Cheque</ion-label>
+                      <ion-radio slot="start" value="cheque"></ion-radio>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>TFN</ion-label>
+                      <ion-radio slot="start" value="tfn"></ion-radio>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>Bank</ion-label>
+                      <ion-radio slot="start" value="bank"></ion-radio>
+                    </ion-item>
+                  </ion-radio-group>
+
+              <!-- <ion-item class="ml-n4">
                 <ion-radio  ng-value="'cheque'" name="hiringOptions"></ion-radio>
                 <ion-label class="ml-4">Cheque</ion-label>
               </ion-item>
@@ -185,7 +248,7 @@
               <ion-item>
                   <ion-radio  ng-value="'Bank'" name="hiringOptions"></ion-radio>
                   <ion-label class="ml-4" >Bank</ion-label>
-              </ion-item>
+              </ion-item> -->
              
             </ion-list>
           </ion-col>
@@ -197,8 +260,10 @@
                 <ion-label margin-bottom class="label-primary"> Bank Name </ion-label>
                 <ion-input  
                   type="text"
+                  name="bank_name"  formControlName="bank_name" required
                   placeholder="Bank Name"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('bank_name').dirty && hasError('bank_name', 'required')" style="color : red">Bank name is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -209,8 +274,10 @@
                 <ion-label margin-bottom class="label-primary"> BSB </ion-label>
                 <ion-input  
                   type="number"
+                  name="bsb"  formControlName="bsb" required
                   placeholder="Bank-State-Branch number"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('bsb').dirty && hasError('bsb', 'required')" style="color : red">BSB is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -221,8 +288,10 @@
                 <ion-label margin-bottom class="label-primary"> Account Number </ion-label>
                 <ion-input  
                   type="number"
+                  name="account_number"  formControlName="account_number" required
                   placeholder="Bank Account Number"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('account_number').dirty && hasError('account_number', 'required')" style="color : red">Account number is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -233,8 +302,9 @@
                 <ion-label margin-bottom class="label-primary"> Rate </ion-label>
                 <ion-input  
                   type="number"
+                  name="rate"  formControlName="rate"
                   placeholder="Rate"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2" disabled></ion-input>
             </div>
           </ion-col>
       </ion-row>
@@ -245,8 +315,9 @@
                 <ion-label margin-bottom class="label-primary"> Site Allocated </ion-label>
                 <ion-input  
                   type="text"
+                  name="site"  formControlName="site"
                   placeholder="Site location"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2" disabled></ion-input>
             </div>
           </ion-col>
       </ion-row>
@@ -257,8 +328,9 @@
                 <ion-label margin-bottom class="label-primary"> Additional Rate If Applicable </ion-label>
                 <ion-input  
                   type="number"
+                  name="additional_rate"  formControlName="additional_rate"
                   placeholder="Additional Rate If Applicable"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2" disabled></ion-input>
             </div>
           </ion-col>
       </ion-row>
@@ -269,8 +341,9 @@
                 <ion-label margin-bottom class="label-primary"> Site Name for Additional Rate </ion-label>
                 <ion-input  
                   type="text"
+                  name="additional_site"  formControlName="additional_site"
                   placeholder="Site Name for Additional Rate"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2" disabled></ion-input>
             </div>
           </ion-col>
       </ion-row>
@@ -294,8 +367,22 @@
                 <div color="transparent" class="d-flex justify-content-between">
                     <ion-text margin-bottom class="label-primary"> Claim the tax-free threshold </ion-text>
 
-                    <ion-list class="d-flex justify-content-between">
-                        <ion-item class="ml-n4">
+                    <ion-list class="d-flex justify-content-between ml-n4" >
+                        
+                      <ion-radio-group name="tax_free"  formControlName="tax_free" (ngModelChange) = "checkTaxDetail()">      
+                            <ion-item>
+                              <ion-label>Yes</ion-label>
+                              <ion-radio slot="start" value="1" checked></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item>
+                              <ion-label>No</ion-label>
+                              <ion-radio slot="start" value="0"></ion-radio>
+                            </ion-item>
+                    
+                          </ion-radio-group>  
+                      
+                      <!-- <ion-item class="ml-n4">
                             <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4">Yes</ion-label>
                           </ion-item>
@@ -303,7 +390,7 @@
                           <ion-item>
                             <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4" >No</ion-label>
-                          </ion-item>
+                          </ion-item> -->
 
                     </ion-list>
 
@@ -319,8 +406,21 @@
                 <div color="transparent" class="d-flex justify-content-between">
                     <ion-text margin-bottom class="label-primary"> Australian resident for tax purposes </ion-text>
 
-                    <ion-list class="d-flex justify-content-between">
-                        <ion-item class="ml-n4">
+                    <ion-list class="d-flex justify-content-between ml-n4" >
+                        <ion-radio-group name="residence"  formControlName="residence">      
+                            <ion-item>
+                              <ion-label>Yes</ion-label>
+                              <ion-radio slot="start" value="1" checked></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item>
+                              <ion-label>No</ion-label>
+                              <ion-radio slot="start" value="0"></ion-radio>
+                            </ion-item>
+                    
+                          </ion-radio-group>  
+                          <p *ngIf="fg.get('residence').dirty && hasError('residence', 'required')" style="color : red">This field is required</p>
+                      <!-- <ion-item class="ml-n4">
                             <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4">Yes</ion-label>
                           </ion-item>
@@ -328,7 +428,7 @@
                           <ion-item>
                             <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4" >No</ion-label>
-                          </ion-item>
+                          </ion-item> -->
 
                     </ion-list>
 
@@ -344,8 +444,22 @@
                 <div color="transparent" class="d-flex justify-content-between">
                     <ion-text margin-bottom class="label-primary"> Higher Education Loan Debt (HELP) </ion-text>
 
-                    <ion-list class="d-flex justify-content-between">
-                        <ion-item class="ml-n4">
+                    <ion-list class="d-flex justify-content-between ml-n4" >
+                       
+                      <ion-radio-group name="loan"  formControlName="loan">      
+                            <ion-item>
+                              <ion-label>Yes</ion-label>
+                              <ion-radio slot="start" value="1"></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item>
+                              <ion-label>No</ion-label>
+                              <ion-radio slot="start" value="0"></ion-radio>
+                            </ion-item>
+                    
+                          </ion-radio-group>   
+                          <p *ngIf="fg.get('loan').dirty && hasError('loan', 'required')" style="color : red">This field is required</p>                      
+                      <!-- <ion-item class="ml-n4">
                             <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4">Yes</ion-label>
                           </ion-item>
@@ -353,7 +467,7 @@
                           <ion-item>
                             <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4" >No</ion-label>
-                          </ion-item>
+                          </ion-item> -->
 
                     </ion-list>
 
@@ -369,8 +483,22 @@
                 <div color="transparent" class="d-flex justify-content-between">
                     <ion-text margin-bottom class="label-primary"> Financial Supplement debt </ion-text>
 
-                    <ion-list class="d-flex justify-content-between">
-                        <ion-item class="ml-n4">
+                    <ion-list class="d-flex justify-content-between ml-n4" >
+                     
+                        <ion-radio-group name="financial"  formControlName="financial">      
+                            <ion-item>
+                              <ion-label>Yes</ion-label>
+                              <ion-radio slot="start" value="1"></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item>
+                              <ion-label>No</ion-label>
+                              <ion-radio slot="start" value="0"></ion-radio>
+                            </ion-item>
+                    
+                          </ion-radio-group>  
+                          <p *ngIf="fg.get('financial').dirty && hasError('financial', 'required')" style="color : red">This field is required</p>                     
+                      <!-- <ion-item class="ml-n4">
                             <ion-radio class="d-none"  ng-value="'cheque'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4">Yes</ion-label>
                           </ion-item>
@@ -378,7 +506,7 @@
                           <ion-item>
                             <ion-radio class="d-none" ng-value="'TFN'" name="hiringOptions"></ion-radio>
                             <ion-label class="ml-4" >No</ion-label>
-                          </ion-item>
+                          </ion-item> -->
 
                     </ion-list>
 
@@ -393,6 +521,7 @@
                 <ion-label margin-bottom class="label-primary"> Additional Information </ion-label>
                 <ion-input  
                   type="text"
+                  name="additional_info"  formControlName="additional_info"
                   placeholder="Additional Information"
                   class="n7g-input m-0 mt-2"></ion-input>
             </div>
@@ -417,8 +546,10 @@
                 <ion-label margin-bottom class="label-primary"> Name of Fund </ion-label>
                 <ion-input  
                   type="text"
+                  name="fund_name"  formControlName="fund_name" required
                   placeholder="Name of Fund"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('fund_name').dirty && hasError('fund_name', 'required')" style="color : red">Name of fund  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -429,8 +560,10 @@
                 <ion-label margin-bottom class="label-primary"> Name of Account </ion-label>
                 <ion-input  
                   type="text"
+                  name="account_name"  formControlName="account_name" required
                   placeholder="Name of Account"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('account_name').dirty && hasError('account_name', 'required')" style="color : red">Account Name  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -441,8 +574,10 @@
                 <ion-label margin-bottom class="label-primary"> Membership Number </ion-label>
                 <ion-input  
                   type="number"
+                  name="membership"  formControlName="membership" required
                   placeholder="Membership Number"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('membership').dirty && hasError('membership', 'required')" style="color : red">Membership number  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -464,9 +599,11 @@
             <div margin-bottom>
                 <ion-label margin-bottom class="label-primary"> Security Licence Number </ion-label>
                 <ion-input  
-                  type="number"
+                  type="text"
+                  name="security_licence"  formControlName="security_licence" required
                   placeholder="Security Licence Number"
                   class="n7g-input m-0 mt-2"></ion-input>
+                <p *ngIf="fg.get('security_licence').dirty && hasError('security_licence', 'required')" style="color : red">Security licence number  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -475,10 +612,13 @@
           <ion-col>
             <div margin-bottom>
                 <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
-                <ion-input  
+                <ion-datetime display-format="DD MMM, YYYY" name="securit_expiry"  formControlName="securit_expiry" required class="n7g-input m-0 mt-2"></ion-datetime>
+                <!-- <ion-input  
                   type="date"
+                  name="securit_expiry"  formControlName="securit_expiry" required
                   placeholder="Expiry Date"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2"></ion-input> -->
+                <p *ngIf="fg.get('securit_expiry').dirty && hasError('securit_expiry', 'required')" style="color : red">Expiry date  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -490,17 +630,31 @@
                 <div color="transparent" class="d-flex justify-content-between">
                     <ion-text margin-bottom class="label-primary mr-3"> RSA/RSG (Tick only) </ion-text>
 
-                    <ion-list class="d-flex justify-content-between">
-                        <ion-item class="ml-n4">
+                    <ion-list class="d-flex justify-content-between"  >
+                       
+                      <ion-radio-group name="certificate"  formControlName="certificate" required>      
+                            <ion-item>
+                              <ion-label>RSA</ion-label>
+                              <ion-radio slot="start" value="1"></ion-radio>
+                            </ion-item>
+                        
+                            <ion-item>
+                              <ion-label>RSG</ion-label>
+                              <ion-radio slot="start" value="0"></ion-radio>
+                            </ion-item>
+                    
+                          </ion-radio-group>   
+                      
+                      <!-- <ion-item class="ml-n4">
                             <ion-label >RSA</ion-label>
-                            <ion-radio class="ml-4" ng-value="'cheque'" name="hiringOptions"></ion-radio>
+                            <ion-radio class="ml-4" ng-value="'rsa'" name="certificate"></ion-radio>
                           </ion-item>
             
                           <ion-item>
                             <ion-label >RSG</ion-label>
-                            <ion-radio class="ml-4"  ng-value="'TFN'" name="hiringOptions"></ion-radio>
-                          </ion-item>
-
+                            <ion-radio class="ml-4"  ng-value="'rsg'" name="certificate"></ion-radio>
+                          </ion-item> -->
+                          <p *ngIf="fg.get('certificate').dirty && hasError('certificate', 'required')" style="color : red">Certificate  is required</p>
                     </ion-list>
 
                   </div>
@@ -513,9 +667,11 @@
             <div margin-bottom>
                 <ion-label margin-bottom class="label-primary"> Driver’s Licence Number </ion-label>
                 <ion-input  
-                  type="number"
+                  type="text"
+                  name="driver_licence"  formControlName="driver_licence" required
                   placeholder="Driver’s Licence Number"
                   class="n7g-input m-0 mt-2"></ion-input>
+                  <p *ngIf="fg.get('driver_licence').dirty && hasError('driver_licence', 'required')" style="color : red">Certificate  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -526,8 +682,10 @@
                 <ion-label margin-bottom class="label-primary"> State </ion-label>
                 <ion-input  
                   type="text"
+                  name="state"  formControlName="state" required
                   placeholder="State"
                   class="n7g-input m-0 mt-2"></ion-input>
+                  <p *ngIf="fg.get('state').dirty && hasError('state', 'required')" style="color : red">Certificate  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -536,10 +694,13 @@
           <ion-col>
             <div margin-bottom>
                 <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
-                <ion-input  
+                <ion-datetime display-format="DD MMM, YYYY" name="driving_expiry"  formControlName="driving_expiry" required class="n7g-input m-0 mt-2"></ion-datetime>
+                <!-- <ion-input  
                   type="text"
+                  name="driving_expiry"  formControlName="driving_expiry" required
                   placeholder="Expiry Date"
-                  class="n7g-input m-0 mt-2"></ion-input>
+                  class="n7g-input m-0 mt-2"></ion-input> -->
+                  <p *ngIf="fg.get('driving_expiry').dirty && hasError('driving_expiry', 'required')" style="color : red">Driving expiry  is required</p>
             </div>
           </ion-col>
       </ion-row>
@@ -550,19 +711,17 @@
                 <ion-label margin-bottom class="label-primary"> Notes </ion-label>
                 <ion-textarea  
                   type="text"
+                  name="note"  formControlName="note" 
                   placeholder="Notes"
                   class="n7g-input m-0 mt-2"></ion-textarea>
             </div>
           </ion-col>
       </ion-row>
 
-
-
-
-
+      </form>
       <ion-row margin-bottom >
           <ion-col>
-            <ion-buttons class="m-auto mt-4 btn-primary">Submit</ion-buttons>
+            <ion-buttons class="m-auto mt-4 btn-primary" (click) = "register()"  value = "Submit">Submit</ion-buttons>
           </ion-col>
       </ion-row>
 

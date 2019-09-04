@@ -25,11 +25,21 @@
                 <ion-label margin-bottom padding-bottom class="ion-text-center d-block label-primary">Enter your email</ion-label>
                 <ion-input  
                   type="email"
+                  [(ngModel)] = "email"
                   placeholder="email@example.com"
                   class="n7g-input m-auto mt-4"></ion-input>
+                  <p *ngIf="showMessage" style="color : red">This email is not in invited list. Please contact admin for more info.</p>
+                  <p *ngIf="emailExist" style="color : red">Email is already registered, try different email.</p>
             </div>
-            <ion-buttons class="m-auto mt-4 btn-primary">Submit</ion-buttons>
+            <div margin-bottom>
+                <ion-buttons class="m-auto mt-4 btn-primary"  (click) = "checkUserEmail()">Submit</ion-buttons>
+                <ion-row class="gutter-vertical-huge"></ion-row>
+                <ion-buttons class="m-auto mt-4 btn-primary" (click) ="goToSignin()">Already Registred, Sign In</ion-buttons>
+            </div>
           </ion-col>
       </ion-row>
+     
   </ion-grid>
+
+
 </ion-content>

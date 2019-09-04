@@ -14,16 +14,23 @@
 
     <ion-grid padding >
 
-        <ion-row margin-bottom>
-            <ion-col>
-              <div class="message message-guard">
-                <p class="message-head">10230104054</p>
-                  Integer consectetur libero non purus consectetur fermentum. 
-              </div>
-            </ion-col>
+        <ng-container *ngIf = "showData">
+                <ion-row margin-bottom  *ngFor = "let chat of chatList">
+                        <ion-col >
+                          <div [ngClass] = "{'message message-employee' : chat.user.user_type === 'user', 'message message-guard' : chat.user.user_type === 'admin'}">
+                              {{chat.body}}
+                              <p slot= "end">{{chat.timestamp | date : 'short'}}</p>
+                          </div>
+                        </ion-col>
+                    </ion-row>
+        </ng-container>
+    
+
+        <ion-row *ngIf = "!showData">
+            <p>No Chat Yet</p>
         </ion-row>
 
-        <ion-row margin-bottom>
+        <!-- <ion-row margin-bottom>
             <ion-col>
               <div class="message message-employee">
                   <p class="message-head">54367652342</p>
@@ -70,7 +77,7 @@
                 laborum provident, magnam voluptate ad reprehenderit distinctio unde officiis?
               </div>
             </ion-col>
-        </ion-row>
+        </ion-row> -->
 
 
     </ion-grid>

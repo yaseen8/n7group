@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, MenuController, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from './services/auth/auth.service';
+import { LoaderService } from './services/loader/loader.service';
+import { ToastService } from './services/toast/toast.service';
 
 
 @Component({
@@ -10,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent  {
+  userLogin : boolean = false;
+  userData : any = {};
   
   public appPages = [
     {
@@ -49,8 +54,32 @@ export class AppComponent  {
     private statusBar: StatusBar,
     private navCtrl : NavController,
     private menuCtrl : MenuController,
+    private authService : AuthService,
+    private loaderService : LoaderService,
+    private toastService : ToastService
   ) {
     this.initializeApp();
+    this.authService.loginStatusChange.subscribe(
+      (resp) => {
+        console.log(resp);
+        if(resp) {
+          this.userLogin = true;
+          this.navCtrl.navigateForward('home');
+          this.authService.checkLoggedIn().subscribe(
+            (resp) => {
+              console.log(resp);
+              this.userData = resp;
+            }
+          )
+        }
+        else {
+          this.userLogin = false
+        }
+      },
+      (error) =>{
+        this.userLogin = false;
+      }
+    )
   }
 
 
@@ -65,6 +94,23 @@ export class AppComponent  {
   goToSignIn() {
     this.menuCtrl.close();
     this.navCtrl.navigateForward('sign-in');
+  }
+
+  signout() {
+    this.loaderService.presentLoading();
+    this.authService.logout()
+    .subscribe(
+      (resp) => {
+        this.authService.clearAuthorized();
+        this.loaderService.dismissLoading();
+        this.toastService.presentToast('Logout Successfull');
+        this.menuCtrl.close();
+        this.navCtrl.navigateForward('landing-page');
+      },
+      (error) => {
+        this.loaderService.dismissLoading();
+      }
+    )
   }
 
   

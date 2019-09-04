@@ -11,4 +11,17 @@
 
 <ion-content>
 
+  <ion-list *ngIf = "showData">
+    <ion-item *ngFor = "let attendence of attendenceRecord" color = "primary">
+       <ion-label>
+         {{attendence.check_in_location }} -- {{attendence.check_out_location}}
+         <p slot="end">{{attendence.check_in }} -- {{attendence.check_out }}</p>
+       </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-card *ngIf = "showMessage">
+      <ion-card-content>
+        <h2>No records :(</h2>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -1,8 +1,5 @@
 <ion-header >
   <ion-toolbar class="text-center">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title> 
         <ion-text class="u-title-center"> Sign In </ion-text>
     </ion-title>
@@ -10,4 +7,29 @@
 </ion-header>
 <ion-content>
 
+  <ion-grid>
+      <ion-row class="d-flex flex-column ion-justify-content-center">
+          <ion-col>
+            <div margin-bottom>
+                <ion-label margin-bottom padding-bottom class="ion-text-center d-block label-primary"></ion-label>
+                <ion-input  
+                 placeholder = "Email"
+                  [(ngModel)] = "email"
+                  type="text"
+                  class="n7g-input m-auto mt-4"></ion-input>
+            </div>
+            <div margin-bottom>
+                <ion-label margin-bottom padding-bottom class="ion-text-center d-block label-primary"></ion-label>
+                <ion-input  
+                  type="password"
+                  [(ngModel)] = "password"
+                  placeholder = "Password"
+                  class="n7g-input m-auto mt-4"></ion-input>
+            </div>
+            <ion-buttons class="m-auto mt-4 btn-primary" (click) ="signin()">Signin</ion-buttons>
+            <ion-row class="gutter-vertical-huge"></ion-row>
+                <ion-buttons class="m-auto mt-4 btn-primary" (click) ="goToGetStarted()">Get Started</ion-buttons>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
 </ion-content>
