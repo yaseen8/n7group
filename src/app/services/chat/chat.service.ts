@@ -11,7 +11,10 @@ export class ChatService {
               private http : HttpClient) { }
 
   getChat(chat_from, user_type) {
-    console.log(chat_from, user_type);
     return this.http.get(this.apiService.prepRoute('get_user_chat', {'chat_from' :chat_from, 'chat_to' : '', 'user_type' : user_type}));
+  }
+
+  addUserMessage(data) {
+    return this.http.post(this.apiService.prepRoute('add_user_message'), data);
   }
 }

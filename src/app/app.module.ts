@@ -16,7 +16,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,8 +36,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx'
       { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
       Geolocation,
       Diagnostic,
-      LocationAccuracy,
-      BackgroundGeolocation
+      LocationAccuracy
   ],
   bootstrap: [AppComponent]
 })

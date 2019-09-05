@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import 'rxjs/add/operator/filter';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,7 @@ export class GetCurrentLocationService {
   public lat: number = 0;
   public lng: number = 0;
 
-  constructor(private backgroundGeolocation : BackgroundGeolocation,
-    private geolocation : Geolocation,
+  constructor(private geolocation : Geolocation,
     private zone : NgZone) { }
 
 // startTracking() {

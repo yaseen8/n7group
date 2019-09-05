@@ -21,6 +21,7 @@ export class HomePage {
   checkInComplteted :boolean = false;
   checkInDetail : any = {};
   title = "Home";
+  showData : boolean = true;
 
   constructor(private authService : AuthService,
               private loaderService : LoaderService,
@@ -130,10 +131,15 @@ export class HomePage {
         
         if(resp) {
           this.jobDetail = resp;
+          this.showData = true;
+        }
+        else {
+          this.showData = false;
         }
       },
       (error) => {
         // this.loaderService.dismissLoading();
+        this.showData = false;
       }
     )
   }

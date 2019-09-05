@@ -14,6 +14,7 @@ export class MessagesPage implements OnInit {
   chatList : any = [];
   showData : boolean = true;
   userData : any = {};
+  messageBody : string;
 
   constructor(private loaderService : LoaderService,
               private chatService : ChatService,
@@ -55,6 +56,29 @@ export class MessagesPage implements OnInit {
       },
       (error) => {
         this.showData = false;
+        this.loaderService.dismissLoading();
+      }
+    )
+  }
+
+  addMessage() {
+    if(!this.messageBody) {
+      return false;
+    }
+    let data =  {
+      'body' : this.messageBody
+    }
+    this.loaderService.presentLoading();
+    this.chatService.addUserMessage(data).subscribe(
+      (resp) => {
+        console.log(resp);
+        if(resp) {
+          this.getChat();
+          this.messageBody = '';
+        }
+        this.loaderService.dismissLoading();
+      },
+      (error) => {
         this.loaderService.dismissLoading();
       }
     )

@@ -39,9 +39,12 @@
                 </h1>
               </ion-text>
               <ion-text margin-bottom >
-                <h1 class="label-primary m-0">
+                <h1 class="label-primary m-0" *ngIf = "showData">
                     {{ jobDetail.job_location }}
                 </h1>
+                <h1 class="label-primary m-0" *ngIf = "!showData">
+                  Job location not set yet
+              </h1>
               </ion-text>
             </div>
           </ion-col>
@@ -56,9 +59,12 @@
                 </h1>
               </ion-text>
               <ion-text margin-bottom >
-                <h1 class="label-primary m-0">
+                <h1 class="label-primary m-0" *ngIf = "showData">
                     {{ jobDetail.start_time }} -- {{ jobDetail.end_time}}
                 </h1>
+                <h1 class="label-primary m-0" *ngIf = "!showData">
+                  Job timing not set yet
+              </h1>
               </ion-text>
             </div>
           </ion-col>
