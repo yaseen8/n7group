@@ -22,8 +22,8 @@
           <ion-col>
             <div class="d-flex justify-content-between">
                 <ion-label class="label-primary"> Hiring Company </ion-label>
-                <ion-select interface="popover"  name="company"  formControlName="company" required >
-                  <ion-select-option  *ngFor="let comp of companyList" [value]="comp.id" >{{comp.name}}</ion-select-option>
+                <ion-select  interface="popover"  name="company"  formControlName="company" required  >
+                  <ion-select-option style="background: black" *ngFor="let comp of companyList" [value]="comp.id" >{{comp.name}}</ion-select-option>
                 </ion-select>
                   <p *ngIf="fg.get('company').dirty && hasError('company', 'required')" style="color : red">Company is required</p>
             </div>
@@ -50,7 +50,7 @@
                       <ion-radio  ng-value="'transfer'" name="hire"></ion-radio>
                       <ion-label class="ml-4" >Transfer</ion-label>
                     </ion-item> -->
-                    <p *ngIf="fg.get('hire').dirty && hasError('hire', 'required')" style="color : red">Hiring type is required</p>
+                    <p *ngIf="fg.get('hire').dirty && hasError('hire', 'required')" color="danger">Hiring type is required</p>
                 </ion-list>
           </ion-col>
       </ion-row>
@@ -122,10 +122,13 @@
 
       <ion-row margin-bottom >
         <ion-col>
-          <div class="d-flex justify-content-between">
-              <ion-label margin-bottom >Date of Birth</ion-label>
+          <div class="w-100">
+              <ion-item>
+                <ion-label margin-bottom >Date of Birth</ion-label>
+                <ion-datetime display-format="DD MMM, YYYY"  name="dob"  formControlName="dob" required ></ion-datetime>
+
+              </ion-item>
               
-              <ion-datetime display-format="DD MMM, YYYY"  name="dob"  formControlName="dob" required ></ion-datetime>
               <!-- <ion-input  
                 type="date"
                 placeholder="Date of Birth"
