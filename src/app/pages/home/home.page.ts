@@ -22,6 +22,8 @@ export class HomePage {
   checkInDetail : any = {};
   title = "Home";
   showData : boolean = true;
+  lat : any;
+  long : any;
 
   constructor(private authService : AuthService,
               private loaderService : LoaderService,
@@ -30,6 +32,15 @@ export class HomePage {
               private diagnostic : Diagnostic,
               private locationAccuracy: LocationAccuracy,
               private geolocation: Geolocation) {
+
+                this.geolocation.getCurrentPosition().then((resp) => {
+                  this.lat = resp.coords.latitude
+                  this.long =  resp.coords.longitude
+                  // alert(JSON.stringify(resp));
+                 }).catch((error) => {
+                   console.log('Error getting location', error);
+                   alert(JSON.stringify(error));
+                 });
     this.authService.loginStatusChange.subscribe(
       (resp) => {
         console.log(resp);
@@ -45,7 +56,7 @@ export class HomePage {
       (error) =>{
       }
     )
-    this.checkAndGetCurrentLocation();
+    // this.checkAndGetCurrentLocation();
   }
 
   checkAndGetCurrentLocation() {
@@ -58,43 +69,36 @@ export class HomePage {
             // alert(canRequest);
             // if(canRequest) {
               // the accuracy option will be ignored by iOS
+              this.geolocation.getCurrentPosition().then((resp) => {
+                // resp.coords.latitude
+                // resp.coords.longitude
+                alert(JSON.stringify(resp));
+               }).catch((error) => {
+                 console.log('Error getting location', error);
+                 alert(JSON.stringify(error));
+               });
               this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
                 (resp) => {
                   alert(JSON.stringify(resp));
-                  let options = {
-                    frequency: 3000, 
-                    enableHighAccuracy: true
-                  };
-                  this.geolocation.watchPosition(options).subscribe((position: Geoposition) => {
-
-                    console.log(position);
-                    alert(JSON.stringify(position));
-                    // Run update inside of Angular's zone
-                    // this.zone.run(() => {
-                    //   this.lat = position.coords.latitude;
-                    //   this.lng = position.coords.longitude;
-                    // });
-                
-                  });
-                  // this.geolocation.getCurrentPosition().then((resp) => {
-                  //   // resp.coords.latitude
-                  //   // resp.coords.longitude
-                  //   alert(JSON.stringify(resp));
-                  //  }).catch((error) => {
-                  //    console.log('Error getting location', error);
-                  //    alert(JSON.stringify(error));
-                  //  });
+                  this.geolocation.getCurrentPosition().then((resp) => {
+                    // resp.coords.latitude
+                    // resp.coords.longitude
+                    alert(JSON.stringify(resp));
+                   }).catch((error) => {
+                     console.log('Error getting location', error);
+                     alert(JSON.stringify(error));
+                   });
                 },
                 (error) => 
                 {
-                  // this.geolocation.getCurrentPosition().then((resp) => {
-                  //   // resp.coords.latitude
-                  //   // resp.coords.longitude
-                  //   alert(JSON.stringify(resp));
-                  //  }).catch((error) => {
-                  //    console.log('Error getting location', error);
-                  //    alert(JSON.stringify(error));
-                  //  });
+                  this.geolocation.getCurrentPosition().then((resp) => {
+                    // resp.coords.latitude
+                    // resp.coords.longitude
+                    alert(JSON.stringify(resp));
+                   }).catch((error) => {
+                     console.log('Error getting location', error);
+                     alert(JSON.stringify(error));
+                   });
                 }
               );
             // }
@@ -102,14 +106,14 @@ export class HomePage {
           });
         }
         else {
-          // this.geolocation.getCurrentPosition().then((resp) => {
-          //   // resp.coords.latitude
-          //   // resp.coords.longitude
-          //   alert(JSON.stringify(resp));
-          //  }).catch((error) => {
-          //    console.log('Error getting location', error);
-          //    alert(JSON.stringify(error));
-          //  });
+          this.geolocation.getCurrentPosition().then((resp) => {
+            // resp.coords.latitude
+            // resp.coords.longitude
+            alert(JSON.stringify(resp));
+           }).catch((error) => {
+             console.log('Error getting location', error);
+             alert(JSON.stringify(error));
+           });
         }
       },
       (error) => {
