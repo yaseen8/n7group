@@ -11,6 +11,7 @@
    
 }
 
+  //override defaults
 
 ion{
     &-header, &-toolbar{
@@ -28,7 +29,14 @@ ion{
             opacity: 1;
         }
     }
-    
+
+    &-header{
+        .toolbar-background{
+            background: $color-secondary-shade;
+            background-position: center;
+        }
+    }
+
   }
 
   //override defaults
@@ -41,3 +49,4 @@ ion{
  .picker-wrapper.sc-ion-picker-md{
     background: $color-secondary;
   }
+

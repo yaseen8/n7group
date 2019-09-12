@@ -1,6 +1,6 @@
 
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="dark">
       <ion-title></ion-title>
     </ion-toolbar>
   </ion-header>
@@ -8,8 +8,15 @@
   
   <ion-content padding >
     <ion-grid padding >
+        <ion-text margin-bottom class="text-center">
+          <h1 class="heading-primary"> 
+            <span class="text-uppercase">Welcome to</span>
+            <br/>
+            <span class="u-color-primary">N7Group</span>
+          </h1>
+        </ion-text>
       <ion-row class="gutter-vertical-large"></ion-row>
-
+      <ion-row class="gutter-vertical-huge"></ion-row>
         <ion-buttons class="m-auto mt-4 btn-primary" (click) ="goToGetStarted()">Get Started</ion-buttons>
         <ion-row class="gutter-vertical-huge"></ion-row>
         <ion-buttons class="m-auto mt-4 btn-primary" (click) ="goToSignin()">Sign In</ion-buttons>
