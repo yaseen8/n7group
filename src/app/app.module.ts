@@ -36,7 +36,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
       { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
       Geolocation,
       Diagnostic,
-      LocationAccuracy
+      LocationAccuracy,
   ],
   bootstrap: [AppComponent]
 })

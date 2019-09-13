@@ -36,7 +36,7 @@ export class HomePage {
                 this.geolocation.getCurrentPosition().then((resp) => {
                   this.lat = resp.coords.latitude
                   this.long =  resp.coords.longitude
-                  // alert(JSON.stringify(resp));
+                  alert(this.lat);
                  }).catch((error) => {
                    console.log('Error getting location', error);
                    alert(JSON.stringify(error));

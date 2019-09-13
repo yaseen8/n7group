@@ -7,7 +7,6 @@ import { AuthService } from './services/auth/auth.service';
 import { LoaderService } from './services/loader/loader.service';
 import { ToastService } from './services/toast/toast.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -56,7 +55,7 @@ export class AppComponent  {
     private menuCtrl : MenuController,
     private authService : AuthService,
     private loaderService : LoaderService,
-    private toastService : ToastService
+    private toastService : ToastService,
   ) {
     this.initializeApp();
     this.authService.loginStatusChange.subscribe(

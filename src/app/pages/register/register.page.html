@@ -1,33 +1,30 @@
 <ion-header >
   <ion-toolbar class="text-center">
     <ion-title class="ml-n4"> 
-        <ion-text class="u-title-center"> {{ title }} </ion-text>
+        <ion-text> {{ title }} </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
   <ion-grid padding >
     <form [formGroup] = "fg">
       <ion-row margin-bottom>
           <ion-col>
-            <div margin-bottom  class="text-center">
+            <div margin-bottom>
                 <ion-text margin-bottom class="heading-primary"> New Employee Form </ion-text>
             </div>
           </ion-col>
       </ion-row>
 
-      <ion-row>
-          <ion-col class="gutter-vertical-small"></ion-col>
-      </ion-row>
 
       <ion-row margin-bottom>
-          <ion-col margin-bottom>
-            <div>
-                <ion-label margin-bottom class="label-primary"> Hiring Company </ion-label>
-                <ion-select interface="popover"  name="company"  formControlName="company" required>
-                    <ion-select-option *ngFor="let comp of companyList" [value]="comp.id" >{{comp.name}}</ion-select-option>
-                  </ion-select>
+          <ion-col>
+            <div class="d-flex justify-content-between">
+                <ion-label class="label-primary"> Hiring Company </ion-label>
+                <ion-select  interface="popover"  name="company"  formControlName="company" required  >
+                  <ion-select-option style="background: black" *ngFor="let comp of companyList" [value]="comp.id" >{{comp.name}}</ion-select-option>
+                </ion-select>
                   <p *ngIf="fg.get('company').dirty && hasError('company', 'required')" style="color : red">Company is required</p>
             </div>
                 <ion-list color="transparent" class="d-flex justify-content-between ml-n4" >
@@ -53,26 +50,20 @@
                       <ion-radio  ng-value="'transfer'" name="hire"></ion-radio>
                       <ion-label class="ml-4" >Transfer</ion-label>
                     </ion-item> -->
-                    <p *ngIf="fg.get('hire').dirty && hasError('hire', 'required')" style="color : red">Hiring type is required</p>
+                    <p *ngIf="fg.get('hire').dirty && hasError('hire', 'required')" color="danger">Hiring type is required</p>
                 </ion-list>
           </ion-col>
       </ion-row>
 
-      <ion-row>
-          <ion-col class="gutter-vertical-small"></ion-col>
-      </ion-row>
-
       <ion-row margin-bottom>
         <ion-col>
-          <div class="text-center">
-              <ion-text class="heading-secondary"> Personal Details </ion-text>
-          </div>
+            <ion-text class="heading-secondary"> Personal Details </ion-text>
         </ion-col>
       </ion-row>
       
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary">Guard names</ion-label>
                 <ion-input  
                   type="text"
@@ -86,7 +77,7 @@
 
       <ion-row margin-bottom >
         <ion-col>
-          <div margin-bottom>
+          <div>
               <ion-label margin-bottom class="label-primary">Surname</ion-label>
               <ion-input  
                 type="text"
@@ -100,7 +91,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary">Email</ion-label>
                 <ion-input  
                   type="email"
@@ -117,7 +108,7 @@
 
         <ion-row margin-bottom >
             <ion-col>
-              <div margin-bottom>
+              <div>
                   <ion-label margin-bottom class="label-primary">Password</ion-label>
                   <ion-input  
                     type="password"
@@ -131,9 +122,13 @@
 
       <ion-row margin-bottom >
         <ion-col>
-          <div margin-bottom>
-              <ion-label margin-bottom >Date of Birth</ion-label>
-              <ion-datetime display-format="DD MMM, YYYY"  name="dob"  formControlName="dob" required ></ion-datetime>
+          <div class="w-100">
+              <ion-item>
+                <ion-label margin-bottom >Date of Birth</ion-label>
+                <ion-datetime display-format="DD MMM, YYYY"  name="dob"  formControlName="dob" required ></ion-datetime>
+
+              </ion-item>
+              
               <!-- <ion-input  
                 type="date"
                 placeholder="Date of Birth"
@@ -146,7 +141,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary">Address</ion-label>
                 <ion-textarea  
                   type="text"
@@ -160,7 +155,7 @@
 
       <ion-row margin-bottom >
         <ion-col>
-          <div margin-bottom>
+          <div >
               <ion-label margin-bottom class="label-primary">Mobile Number</ion-label>
               <ion-input  
                 type="number"
@@ -176,7 +171,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary">Next of Kin - Name</ion-label>
                 <ion-input  
                   type="text"
@@ -190,7 +185,7 @@
 
       <ion-row margin-bottom >
         <ion-col>
-          <div margin-bottom>
+          <div >
               <ion-label margin-bottom class="label-primary">Next of Kin - Contact Detail</ion-label>
               <ion-input  
                 type="text"
@@ -206,15 +201,15 @@
         <ion-col class="gutter-vertical-small"></ion-col>
       </ion-row>
 
-      <ion-row margin-bottom>
+      <ion-row >
         <ion-col>
-          <div  class="text-center">
-              <ion-text class="heading-secondary"> Mode of Pay <br/> Main Account </ion-text>
+          <div >
+              <ion-text class="heading-secondary"> Mode of Payment </ion-text>
           </div>
         </ion-col>
       </ion-row>
 
-      <ion-row margin-bottom >
+      <ion-row >
           <ion-col>
             <ion-list color="transparent" class="d-flex justify-content-between ml-n4" >
 
@@ -256,7 +251,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Bank Name </ion-label>
                 <ion-input  
                   type="text"
@@ -270,7 +265,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> BSB </ion-label>
                 <ion-input  
                   type="number"
@@ -284,7 +279,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Account Number </ion-label>
                 <ion-input  
                   type="number"
@@ -298,7 +293,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Rate </ion-label>
                 <ion-input  
                   type="number"
@@ -311,7 +306,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Site Allocated </ion-label>
                 <ion-input  
                   type="text"
@@ -324,8 +319,8 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
-                <ion-label margin-bottom class="label-primary"> Additional Rate If Applicable </ion-label>
+            <div>
+                <ion-label margin-bottom class="label-primary"> Additional Rate <small>If Applicable</small> </ion-label>
                 <ion-input  
                   type="number"
                   name="additional_rate"  formControlName="additional_rate"
@@ -337,8 +332,8 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
-                <ion-label margin-bottom class="label-primary"> Site Name for Additional Rate </ion-label>
+            <div >
+                <ion-label margin-bottom class="label-primary"> Site Name <small>for Additional Rate </small> </ion-label>
                 <ion-input  
                   type="text"
                   name="additional_site"  formControlName="additional_site"
@@ -362,14 +357,14 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 
-                <div color="transparent" class="d-flex justify-content-between">
+                <div color="transparent" class="d-flex flex-column">
                     <ion-text margin-bottom class="label-primary"> Claim the tax-free threshold </ion-text>
 
-                    <ion-list class="d-flex justify-content-between ml-n4" >
+                    <ion-list class="ml-n4" >
                         
-                      <ion-radio-group name="tax_free"  formControlName="tax_free" (ngModelChange) = "checkTaxDetail()">      
+                      <ion-radio-group  class="d-flex justify-content-between w-100" name="tax_free"  formControlName="tax_free" (ngModelChange) = "checkTaxDetail()">      
                             <ion-item>
                               <ion-label>Yes</ion-label>
                               <ion-radio slot="start" value="1" checked></ion-radio>
@@ -401,13 +396,13 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 
-                <div color="transparent" class="d-flex justify-content-between">
+                <div color="transparent" class="d-flex flex-column">
                     <ion-text margin-bottom class="label-primary"> Australian resident for tax purposes </ion-text>
 
-                    <ion-list class="d-flex justify-content-between ml-n4" >
-                        <ion-radio-group name="residence"  formControlName="residence">      
+                    <ion-list class="ml-n4" >
+                        <ion-radio-group class="d-flex justify-content-between w-100" name="residence"  formControlName="residence">      
                             <ion-item>
                               <ion-label>Yes</ion-label>
                               <ion-radio slot="start" value="1" checked></ion-radio>
@@ -439,14 +434,14 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 
-                <div color="transparent" class="d-flex justify-content-between">
+                <div color="transparent" class="d-flex flex-column">
                     <ion-text margin-bottom class="label-primary"> Higher Education Loan Debt (HELP) </ion-text>
 
-                    <ion-list class="d-flex justify-content-between ml-n4" >
+                    <ion-list class="ml-n4" >
                        
-                      <ion-radio-group name="loan"  formControlName="loan">      
+                      <ion-radio-group class="d-flex justify-content-between w-100" name="loan"  formControlName="loan">      
                             <ion-item>
                               <ion-label>Yes</ion-label>
                               <ion-radio slot="start" value="1"></ion-radio>
@@ -478,14 +473,14 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 
-                <div color="transparent" class="d-flex justify-content-between">
+                <div color="transparent" class="d-flex flex-column">
                     <ion-text margin-bottom class="label-primary"> Financial Supplement debt </ion-text>
 
-                    <ion-list class="d-flex justify-content-between ml-n4" >
+                    <ion-list class="ml-n4" >
                      
-                        <ion-radio-group name="financial"  formControlName="financial">      
+                        <ion-radio-group class="d-flex justify-content-between w-100" name="financial"  formControlName="financial">      
                             <ion-item>
                               <ion-label>Yes</ion-label>
                               <ion-radio slot="start" value="1"></ion-radio>
@@ -517,7 +512,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Additional Information </ion-label>
                 <ion-input  
                   type="text"
@@ -542,7 +537,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 <ion-label margin-bottom class="label-primary"> Name of Fund </ion-label>
                 <ion-input  
                   type="text"
@@ -556,7 +551,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Name of Account </ion-label>
                 <ion-input  
                   type="text"
@@ -570,7 +565,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Membership Number </ion-label>
                 <ion-input  
                   type="number"
@@ -596,7 +591,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Security Licence Number </ion-label>
                 <ion-input  
                   type="text"
@@ -610,7 +605,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
                 <ion-datetime display-format="DD MMM, YYYY" name="securit_expiry"  formControlName="securit_expiry" required class="n7g-input m-0 mt-2"></ion-datetime>
                 <!-- <ion-input  
@@ -625,14 +620,14 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div >
                 
-                <div color="transparent" class="d-flex justify-content-between">
-                    <ion-text margin-bottom class="label-primary mr-3"> RSA/RSG (Tick only) </ion-text>
+                <div color="transparent" class="d-flex flex-column">
+                    <ion-text  class="label-primary mr-3"> RSA/RSG (Tick only) </ion-text>
 
-                    <ion-list class="d-flex justify-content-between"  >
+                    <ion-list class="ml-n4"  >
                        
-                      <ion-radio-group name="certificate"  formControlName="certificate" required>      
+                      <ion-radio-group class="d-flex justify-content-between" name="certificate"  formControlName="certificate" required>      
                             <ion-item>
                               <ion-label>RSA</ion-label>
                               <ion-radio slot="start" value="1"></ion-radio>
@@ -664,7 +659,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Driver’s Licence Number </ion-label>
                 <ion-input  
                   type="text"
@@ -678,7 +673,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> State </ion-label>
                 <ion-input  
                   type="text"
@@ -692,7 +687,7 @@
 
       <ion-row margin-bottom >
           <ion-col>
-            <div margin-bottom>
+            <div>
                 <ion-label margin-bottom class="label-primary"> Expiry Date </ion-label>
                 <ion-datetime display-format="DD MMM, YYYY" name="driving_expiry"  formControlName="driving_expiry" required class="n7g-input m-0 mt-2"></ion-datetime>
                 <!-- <ion-input  
@@ -719,6 +714,9 @@
       </ion-row>
 
       </form>
+      <ion-row >
+        <ion-col class="gutter-vertical-small"></ion-col>
+      </ion-row>
       <ion-row margin-bottom >
           <ion-col>
             <ion-buttons class="m-auto mt-4 btn-primary" (click) = "register()"  value = "Submit">Submit</ion-buttons>
