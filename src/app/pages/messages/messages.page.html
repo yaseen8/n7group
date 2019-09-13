@@ -1,5 +1,5 @@
 <ion-header >
-    <ion-toolbar class="text-center">
+    <ion-toolbar color="dark" class="text-center">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -17,9 +17,9 @@
         <ng-container *ngIf = "showData">
                 <ion-row margin-bottom  *ngFor = "let chat of chatList">
                         <ion-col >
-                          <div [ngClass] = "{'message message-employee' : chat.user.user_type === 'user', 'message message-guard' : chat.user.user_type === 'admin'}">
-                              {{chat.body}}
-                              <p slot= "end">{{chat.timestamp | date : 'short'}}</p>
+                          <div class="message" [ngClass] = "{' message-employee' : chat.user.user_type === 'user', ' message-guard' : chat.user.user_type === 'admin'}">
+                              <p class="mb-0 ">{{chat.body}}</p>
+                              <p slot= "end" class="mb-0 font-weight-light">{{chat.timestamp | date : 'short'}}</p>
                           </div>
                         </ion-col>
                     </ion-row>
