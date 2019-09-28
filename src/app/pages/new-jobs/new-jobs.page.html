@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="dark" class="text-center">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text class="u-title-center"> New Jobs </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf = "showData">
+    <ion-item *ngFor = "let job of jobsList" color = "primary" (click) = "showDetail(job)">
+       <ion-label >
+         <h1 class="heading-primary m-0"> {{job.location}} </h1>
+         
+         <p class="label-primary m-0" slot="end">{{job.date}}</p>
+       </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-card *ngIf = "showMessage">
+      <ion-card-content>
+        <h2>No records :(</h2>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

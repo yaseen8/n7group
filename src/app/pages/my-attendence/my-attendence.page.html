@@ -12,7 +12,7 @@
 <ion-content padding>
 
   <ion-list *ngIf = "showData">
-    <ion-item *ngFor = "let attendence of attendenceRecord" color = "primary">
+    <ion-item *ngFor = "let attendence of attendenceRecord" color = "primary" (click) = "showDetail(attendence)">
        <ion-label >
          <h1 class="heading-primary m-0"> {{attendence.check_in_location }} -- {{attendence.check_out_location}} </h1>
          

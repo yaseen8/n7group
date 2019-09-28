@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="u-title-center">Detail</ion-title>
+    <ion-label slot="end" (click)="dismiss()">Close</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+      <ion-item>
+          <ion-label>
+            <p>Location</p>
+            <h1 text-wrap>{{detail.location}}</h1>
+          </ion-label>
+      </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Date</p>
+        <h1>{{detail.date}}</h1>
+      </ion-label>
+        
+    </ion-item>
+    <ion-item>
+        <ion-label>
+          <p>Start Time</p>
+          <h1>{{detail.start_time}}</h1>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label >
+          <p>End Time</p>
+          <h1>{{detail.end_time}}</h1>
+        </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-buttons class="m-auto mt-4 btn-primary" (click) ="checkUserJob()" *ngIf = "!appliedForJob">Request for Job</ion-buttons>
+</ion-content>

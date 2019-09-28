@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title class="u-title-center">Detail</ion-title>
+    <ion-label slot="end" (click)="dismiss()">Close</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <p>Checkin Time</p>
+        <h1>{{detail.check_in}}</h1>
+      </ion-label>
+        
+    </ion-item>
+    <ion-item>
+        <ion-label>
+          <p>Checkin Location</p>
+          <h1 text-wrap>{{detail.check_in_location}}</h1>
+        </ion-label>
+    </ion-item>
+    <ion-item *ngIf = "detail.check_out">
+        <ion-label>
+          <p>Checkout Time</p>
+          <h1>{{detail.check_out}}</h1>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label *ngIf = "detail.check_out_location">
+          <p>Checkout Location</p>
+          <h1 text-wrap>{{detail.check_out_location}}</h1>
+        </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,18 @@
+
+<ion-content>
+  <ion-list *ngIf = "showData">
+    <ion-item *ngFor = "let item of historyList" color = "primary" >
+       <ion-label >
+         <h1 class="heading-primary m-0"> {{item.job.location }}</h1>
+         
+         <p class="label-primary m-0" slot="end">{{item.job.date }}</p>
+         <p class="label-primary m-0" slot="end">{{item.job.start_time }} -- {{item.job.end_time }}</p>
+       </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-card *ngIf = "showMessage">
+      <ion-card-content>
+        <h2>No records :(</h2>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

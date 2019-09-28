@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { YourJobsPage } from './pages/your-jobs/your-jobs.page';
 
 const routes: Routes = [
   {
@@ -18,6 +19,26 @@ const routes: Routes = [
   { path: 'get-started', loadChildren: './pages/get-started/get-started.module#GetStartedPageModule' },
   { path: 'sign-in', loadChildren: './pages/sign-in/sign-in.module#SignInPageModule' },
   { path: 'landing-page', loadChildren: './pages/landing-page/landing-page.module#LandingPagePageModule' },
+  { path: 'attendence-detail', loadChildren: './pages/my-attendence/attendence-detail/attendence-detail.module#AttendenceDetailPageModule' },
+  { path: 'new-jobs', loadChildren: './pages/new-jobs/new-jobs.module#NewJobsPageModule' },
+  { path: 'job-detail', loadChildren: './pages/new-jobs/job-detail/job-detail.module#JobDetailPageModule' },
+  { path: 'your-jobs',
+   component : YourJobsPage,
+  children : [
+    { path: 'job-history',
+     loadChildren: './pages/your-jobs/job-history/job-history.module#JobHistoryPageModule'
+    },
+    { path: 'job-schedule',
+     loadChildren: './pages/your-jobs/job-schedule/job-schedule.module#JobSchedulePageModule'
+     },
+     {
+      path: '',
+      redirectTo: 'job-history',
+      pathMatch: 'full'
+    }
+  ]
+ },
+  
 ];
 
 @NgModule({

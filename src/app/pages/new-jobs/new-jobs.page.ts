@@ -1,39 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { JobsService } from '../../services/jobs/jobs.service';
 import { LoaderService } from '../../services/loader/loader.service';
-import { JobCheckInService } from '../../services/job-check-in/job-check-in.service';
 import { ModalController } from '@ionic/angular';
-import { AttendenceDetailPage } from './attendence-detail/attendence-detail.page';
+import { JobDetailPage } from './job-detail/job-detail.page';
 
 @Component({
-  selector: 'app-my-attendence',
-  templateUrl: './my-attendence.page.html',
-  styleUrls: ['./my-attendence.page.scss'],
+  selector: 'app-new-jobs',
+  templateUrl: './new-jobs.page.html',
+  styleUrls: ['./new-jobs.page.scss'],
 })
-export class MyAttendencePage implements OnInit {
-  attendenceRecord : any = [];
+export class NewJobsPage implements OnInit {
+  jobsList: any = [];
   showData : boolean = true;
   showMessage : boolean = false;
-
-  constructor(private loaderService : LoaderService,
-              private jobCheckInService : JobCheckInService,
+  constructor(private jobsService : JobsService,
+              private loaderService : LoaderService,
               private modalController : ModalController) { }
 
   ngOnInit() {
-    this.getAttendence();
+    this.getJobs();
   }
 
-  getAttendence() {
+  getJobs() {
     this.loaderService.presentLoading();
-    this.jobCheckInService.getAttendenceRecord().subscribe(
-      (resp : any) =>{
+    this.jobsService.getJobs().subscribe(
+      (resp) => {
         this.loaderService.dismissLoading();
-        if(resp.length) {
-          this.attendenceRecord = resp;
-          this.showData = true;
+        this.jobsList = resp;
+        if(this.jobsList.length) {
           this.showMessage = false;
+          this.showData = true;
         }
         else {
-          this.showData  = false;
+          this.showData = false;
           this.showMessage = true;
         }
       },
@@ -47,7 +46,7 @@ export class MyAttendencePage implements OnInit {
 
   async showDetail(data) {
     const modal = await this.modalController.create({
-        component: AttendenceDetailPage,
+        component: JobDetailPage,
         componentProps : {
           'data' : data
         }

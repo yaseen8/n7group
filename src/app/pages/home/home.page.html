@@ -35,8 +35,7 @@
             <div margin-bottom>
               <ion-text>
                 <h1 class="heading-secondary m-0">
-                    <!-- Job Location -->
-                    {{lat}} {{long}}
+                    Job Location
                 </h1>
               </ion-text>
               <ion-text margin-bottom >
@@ -71,7 +70,7 @@
           </ion-col>
       </ion-row>
 
-      <ion-row margin-bottom *ngIf = "!checkInComplteted">
+      <ion-row margin-bottom *ngIf = "!checkInComplteted && showData">
           <ion-col>
             <div margin-bottom >
               <ion-text>
@@ -111,7 +110,7 @@
 
       <ion-row class="gutter-vertical-huge"></ion-row>
 
-      <ion-row margin-bottom>
+      <ion-row margin-bottom *ngIf="showData">
           <ion-col>
               <ion-buttons class="m-auto mt-4 btn-primary" *ngIf = "!checkedIn && !checkInComplteted" (click) ="checkInUser()">Check In</ion-buttons>
               <ion-buttons class="m-auto mt-4 btn-primary" *ngIf = "checkedIn && !checkInComplteted" (click) = "checkoutUser()">Check Out</ion-buttons>

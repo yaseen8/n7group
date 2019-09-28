@@ -12,7 +12,7 @@ import { RegisterService } from '../../services/register/register.service';
 })
 export class GetStartedPage implements OnInit {
   title="Get Started";
-  email : string;
+  email : string = '';
   showMessage : boolean = false;
   emailExist : boolean = false;
 
@@ -23,13 +23,14 @@ export class GetStartedPage implements OnInit {
               private registerService : RegisterService) { }
 
   checkEmail() {
-    this.loaderService.presentLoading();
+    // this.loaderService.presentLoading();
     this.getStartedService.checkEmail(this.email).subscribe(
       (resp : any) => {
-        this.loaderService.dismissLoading();
+        // this.loaderService.dismissLoading();
         if(resp.length) {
           this.showMessage = false;
           this.navCtrl.navigateForward('register/' + this.email);
+
         }
         else {
           this.showMessage = true;

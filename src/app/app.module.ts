@@ -16,10 +16,15 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { AttendenceDetailPage } from './pages/my-attendence/attendence-detail/attendence-detail.page';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { JobDetailPage } from './pages/new-jobs/job-detail/job-detail.page';
+import { YourJobsPage } from './pages/your-jobs/your-jobs.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, AttendenceDetailPage, JobDetailPage, YourJobsPage],
+  entryComponents: [AttendenceDetailPage,JobDetailPage, YourJobsPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -37,6 +42,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
       Geolocation,
       Diagnostic,
       LocationAccuracy,
+      NativeGeocoder,
+      FCM
   ],
   bootstrap: [AppComponent]
 })

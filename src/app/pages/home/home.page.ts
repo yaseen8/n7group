@@ -6,6 +6,7 @@ import { ToastService } from '../../services/toast/toast.service';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class HomePage {
   showData : boolean = true;
   lat : any;
   long : any;
+  currentAddress : any;
 
   constructor(private authService : AuthService,
               private loaderService : LoaderService,
@@ -31,74 +33,40 @@ export class HomePage {
               private toastService : ToastService,
               private diagnostic : Diagnostic,
               private locationAccuracy: LocationAccuracy,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private nativeGeocoder: NativeGeocoder) {
 
-                this.geolocation.getCurrentPosition().then((resp) => {
-                  this.lat = resp.coords.latitude
-                  this.long =  resp.coords.longitude
-                  alert(this.lat);
-                 }).catch((error) => {
-                   console.log('Error getting location', error);
-                   alert(JSON.stringify(error));
-                 });
-    this.authService.loginStatusChange.subscribe(
-      (resp) => {
-        console.log(resp);
-        if(resp) {
-          this.authService.checkLoggedIn().subscribe(
-            (resp) => {
-              console.log('home',resp);
-              this.userData = resp;
+        this.authService.loginStatusChange.subscribe(
+          (resp) => {
+            console.log(resp);
+            if(resp) {
+              this.authService.checkLoggedIn().subscribe(
+                (resp) => {
+                  console.log('home',resp);
+                  this.userData = resp;
+                }
+              )
             }
-          )
-        }
-      },
-      (error) =>{
-      }
-    )
-    // this.checkAndGetCurrentLocation();
+          },
+          (error) =>{
+          }
+        )
+    this.checkAndGetCurrentLocation();
   }
 
   checkAndGetCurrentLocation() {
-    console.log('called');
     this.diagnostic.isLocationEnabled().then(
       (resp) => {
-        // alert(JSON.stringify(resp));
         if(!resp) {
           this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-            // alert(canRequest);
             // if(canRequest) {
-              // the accuracy option will be ignored by iOS
-              this.geolocation.getCurrentPosition().then((resp) => {
-                // resp.coords.latitude
-                // resp.coords.longitude
-                alert(JSON.stringify(resp));
-               }).catch((error) => {
-                 console.log('Error getting location', error);
-                 alert(JSON.stringify(error));
-               });
               this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
                 (resp) => {
-                  alert(JSON.stringify(resp));
-                  this.geolocation.getCurrentPosition().then((resp) => {
-                    // resp.coords.latitude
-                    // resp.coords.longitude
-                    alert(JSON.stringify(resp));
-                   }).catch((error) => {
-                     console.log('Error getting location', error);
-                     alert(JSON.stringify(error));
-                   });
+                  this.getCurrentLatLong();
                 },
                 (error) => 
                 {
-                  this.geolocation.getCurrentPosition().then((resp) => {
-                    // resp.coords.latitude
-                    // resp.coords.longitude
-                    alert(JSON.stringify(resp));
-                   }).catch((error) => {
-                     console.log('Error getting location', error);
-                     alert(JSON.stringify(error));
-                   });
+                  this.checkAndGetCurrentLocation();
                 }
               );
             // }
@@ -106,19 +74,40 @@ export class HomePage {
           });
         }
         else {
-          this.geolocation.getCurrentPosition().then((resp) => {
-            // resp.coords.latitude
-            // resp.coords.longitude
-            alert(JSON.stringify(resp));
-           }).catch((error) => {
-             console.log('Error getting location', error);
-             alert(JSON.stringify(error));
-           });
+          this.getCurrentLatLong();
         }
       },
       (error) => {
       }
     )
+  }
+
+  getCurrentLatLong() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude
+      this.long =  resp.coords.longitude
+      if(this.lat && this.long) {
+        this.geAddressFromLatLong();
+      }
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+
+  geAddressFromLatLong() {
+    let options : NativeGeocoderOptions  = {
+      useLocale: true,
+      maxResults: 5
+    };
+    this.nativeGeocoder.reverseGeocode(this.lat, this.long, options)
+  .then((result: NativeGeocoderResult[]) => {
+    this.currentAddress = result[0].areasOfInterest + ' ' + result[1].areasOfInterest + ' ' + result[0].subLocality + ' ' + result[0].locality + ' ' + result[0].administrativeArea + ' ' + result[0].countryName;
+  }) 
+  .catch((error: any) => console.log(error));
+
+// this.nativeGeocoder.forwardGeocode('Berlin', options)
+//   .then((result: NativeGeocoderResult[]) => console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude))
+//   .catch((error: any) => console.log(error));
   }
 
   ngOnInit() {
@@ -169,8 +158,12 @@ export class HomePage {
   }
 
   checkInUser() {
+    if(!this.currentAddress) {
+      this.toastService.presentToast('Please enable your location');
+      return false;
+    }
     let data = {
-      'check_in_location' : 'Islamabad'
+      'check_in_location' : this.currentAddress
     }
     this.loaderService.presentLoading();
     this.jobCheckInService.checkInUser(data).subscribe(
@@ -195,10 +188,14 @@ export class HomePage {
   }
 
   checkoutUser() {
+    if(!this.currentAddress) {
+      this.toastService.presentToast('Please enable your location');
+      return false;
+    }
     this.loaderService.presentLoading();
     let data = {
       'checkin_date' : this.getCurrentDate(),
-      'check_out_location' : 'G7 Islamabad'
+      'check_out_location' : this.currentAddress
     }
     this.jobCheckInService.checkoutUser(data).subscribe(
       (resp) => {

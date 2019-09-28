@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth/auth.service';
 import { LoaderService } from './services/loader/loader.service';
 import { ToastService } from './services/toast/toast.service';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,9 @@ export class AppComponent  {
       icon: 'home'
     },
     {
-      title: 'My Account',
-      url: '/my-account',
-      icon: 'person'
+      title: 'New Jobs',
+      url: '/new-jobs',
+      icon: 'briefcase'
     },
     {
       title: 'My Attendence',
@@ -35,17 +36,19 @@ export class AppComponent  {
       title: 'Messages',
       url: '/messages',
       icon: 'chatboxes'
-    }
+    },
+    {
+      title: 'Your Jobs',
+      url: '/your-jobs',
+      icon: 'chatboxes'
+    },
+    {
+      title: 'My Account',
+      url: '/my-account',
+      icon: 'person'
+    },
   ];
   title:any;
-
-  user={
-    firstName: "John",
-    lastName: "Smith",
-    address: "1045 Aurora Blvd, Quezon City, 1109 Metro Manila, Philippines",
-    timingFrom: "8:00 AM",
-    timingTo: "6:00 PM"
-  }
 
   constructor(
     private platform: Platform,
@@ -56,6 +59,7 @@ export class AppComponent  {
     private authService : AuthService,
     private loaderService : LoaderService,
     private toastService : ToastService,
+    private fcm : FCM
   ) {
     this.initializeApp();
     this.authService.loginStatusChange.subscribe(
@@ -68,6 +72,8 @@ export class AppComponent  {
             (resp) => {
               console.log(resp);
               this.userData = resp;
+              this.notification();
+              
             }
           )
         }
@@ -87,6 +93,7 @@ export class AppComponent  {
     this.platform.ready().then(() => {
       this.statusBar.styleBlackOpaque();
       this.splashScreen.hide();
+      
     });
   }
 
@@ -110,6 +117,24 @@ export class AppComponent  {
         this.loaderService.dismissLoading();
       }
     )
+  }
+
+  notification() {
+    this.fcm.getToken();
+    this.fcm.subscribeToTopic('jobs');
+    
+    this.fcm.onNotification().subscribe(data => {
+      alert(JSON.stringify(data));
+      if(data.wasTapped){
+        console.log("Received in background");
+        alert(JSON.stringify(data));
+      } else {
+        alert(JSON.stringify(data));
+        console.log("Received in foreground");
+      };
+    });
+    
+    this.fcm.onTokenRefresh();
   }
 
   

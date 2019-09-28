@@ -41,12 +41,7 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item color="transparent" (click)="goToSignIn()" *ngIf = "!userLogin">
-            <ion-label>
-              Sign In
-            </ion-label>
-          </ion-item>
-          <ion-item color="transparent" (click)="signout()" *ngIf = "userLogin">
+          <ion-item color="transparent" (click)="signout()" >
               <ion-label>
                 Sign Out
               </ion-label>

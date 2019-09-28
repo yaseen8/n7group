@@ -35,17 +35,17 @@ export class SignInPage implements OnInit {
       email : this.email,
       password : this.password
     }
-    this.loaderService.presentLoading();
+    // this.loaderService.presentLoading();
     this.authService.login(data)
         .subscribe(
             (resp) => {
+              // this.loaderService.dismissLoading();
                 this.tokenService.setToken(resp['token']);
-                this.loaderService.dismissLoading();
                 this.toastService.presentToast('Login Successfull');
                 this.navCtrl.navigateForward('home');                  
             },
             (error) => {
-              this.loaderService.dismissLoading();
+              // this.loaderService.dismissLoading();
               this.toastService.presentToast('Username or password is incorrect');
             }
         )

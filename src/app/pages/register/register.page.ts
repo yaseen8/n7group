@@ -18,11 +18,12 @@ export class RegisterPage implements OnInit {
   title = "Registration";
   requestedEmail : boolean = true;    //true when email exist in requested list table createdd by admin else false
   emailExist :boolean = false;      // false when user not already registred with this email else true
-  
+  maxDateForLicence : any;
+  maxDateForDOB : any;
 
   fg = new FormGroup({
     company : new FormControl('', [Validators.required]),
-    hire : new FormControl('', [Validators.required]),
+    hire : new FormControl('direct', [Validators.required]),
     name : new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
@@ -32,14 +33,9 @@ export class RegisterPage implements OnInit {
     address : new FormControl('', [Validators.required]),
     nokName : new FormControl('', [Validators.required]),
     nokContact : new FormControl('', [Validators.required]),
-    payment_mode : new FormControl({value : '', disable : true}),
     bank_name : new FormControl('', [Validators.required]),
     bsb : new FormControl('', [Validators.required]),
     account_number : new FormControl('', [Validators.required]),
-    rate : new FormControl({value : '', disable : true}),
-    site : new FormControl({value : '', disable : true}),
-    additional_rate : new FormControl({value : '', disable : true}),
-    additional_site : new FormControl({value : '', disable : true}),
     tax_free : new FormControl(''),
     residence : new FormControl(''),
     loan : new FormControl(''),
@@ -72,6 +68,22 @@ export class RegisterPage implements OnInit {
                     }
                   }
                 )
+                /// set max date for licence datepicker
+                let date = new Date();
+                let mm : any;
+                let dd : any;
+                dd = date.getDate();
+                mm = date.getMonth() + 1;
+                let yyyy = date.getFullYear();
+                yyyy = yyyy + 10;
+                if(dd <= 9) {
+                  dd =  0 + '' + dd;
+                }
+                if(mm <= 9) {
+                  mm = 0 + '' + mm;
+                }
+                this.maxDateForDOB = date.getFullYear() + '-' + mm + '-' + dd;
+                this.maxDateForLicence = yyyy + '-' + mm + '-' + dd;
                }
 
   ngOnInit() {
@@ -85,34 +97,38 @@ export class RegisterPage implements OnInit {
       (resp) =>{
         // this.loaderService.dismissLoading();
         this.companyList = resp;
+        this.companyList.filter(obj => {
+          if(obj.name == 'n7') {
+            this.fg.get('company').setValue(obj.id);
+          }
+        })
+        console.log(this.fg.value.company);
       },
       (error) => {
         // this.loaderService.dismissLoading();
       }
     )
   }
-
-  checkTaxDetail() {
-    console.log(this.fg.value.tax_free);
-    if(this.fg.value.tax_free == 1) {
-      this.fg.get('residence').setValidators([Validators.required]);
-      this.fg.get('loan').setValidators([Validators.required]);
-      this.fg.get('financial').setValidators([Validators.required]);
-    }
-    else {
-      this.fg.get('residence').setValidators(null);
-      this.fg.get('loan').setValidators(null);
-      this.fg.get('financial').setValidators(null);
-      // this.fg.get('residence').clearValidators();
-      // this.fg.get('financial').clearValidators();
-      // this.fg.get('residence').clearValidators();
-    }
-  }
   
   register() {
+    console.log(this.fg.value.residence);
     if(!this.fg.valid) {
       this.toastService.presentToast('Please fill required fields');
       return false;
+    }
+    if(this.fg.value.tax_free == 1) {
+      if(this.fg.value.residence != 1) {
+        this.toastService.presentToast('Please select Australian Residence Tax Purpose');
+        return false;
+      }
+      if(this.fg.value.loan != 1) {
+        this.toastService.presentToast('Please select Higher education loan debt');
+        return false;
+      }
+      if(this.fg.value.financial != 1) {
+        this.toastService.presentToast('Please select supplement debt ');
+        return false;
+      }
     }
     if(!this.requestedEmail) {
       this.toastService.presentToast('This email is not in requested list. Please contact admin');
