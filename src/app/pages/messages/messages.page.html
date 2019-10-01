@@ -1,16 +1,16 @@
 <ion-header >
-    <ion-toolbar color="dark" class="text-center">
+    <ion-toolbar color="dark">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title> 
-          <ion-text class="u-title-center"> {{ title }} </ion-text>
+          <ion-text> {{ title }} </ion-text>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
     <ion-grid padding >
 
@@ -18,7 +18,7 @@
                 <ion-row margin-bottom  *ngFor = "let chat of chatList">
                         <ion-col >
                           <div class="message" [ngClass] = "{' message-employee' : chat.user.user_type === 'user', ' message-guard' : chat.user.user_type === 'admin'}">
-                              <p class="mb-0 ">{{chat.body}}</p>
+                              <p class="mt-0 mb-0">{{chat.body}}</p>
                               <p slot= "end" class="mb-0 font-weight-light">{{chat.timestamp | date : 'short'}}</p>
                           </div>
                         </ion-col>

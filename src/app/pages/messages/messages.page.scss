@@ -1,8 +1,8 @@
 @import "src/theme/variables.scss";
 
 .message{
-    padding: .6rem 1.5rem;
-    border-radius: 5px;
+    padding: .5rem;
+    border-radius: 3px;
     &-head{
         color: $color-dark;
         margin:0;
@@ -14,5 +14,8 @@
     &-employee{
         background: darken($color-light, 15);
         color: $color-dark;
+    }
+    .font-weight-light{
+        font-size: 10px;
     }
 }
