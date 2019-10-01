@@ -11,7 +11,7 @@ export class JobCheckInService {
               private http : HttpClient) { }
 
   getJobDetail() {
-    return this.http.get(this.apiService.prepRoute('get_job_detail'));
+    return this.http.get(this.apiService.prepRoute('check_user_today_job'));
   }
 
   getCheckInDetail(date) {

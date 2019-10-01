@@ -19,13 +19,16 @@ export class HomePage {
   currentDate  = new Date();
   jobDetail : any = {};
   checkedIn : boolean = false;
-  checkInComplteted :boolean = false;
+  checkInComplteted: boolean = false;
   checkInDetail : any = {};
   title = "Home";
   showData : boolean = true;
   lat : any;
   long : any;
   currentAddress : any;
+  location : string;
+  start_time : string;
+  end_time : string
 
   constructor(private authService : AuthService,
               private loaderService : LoaderService,
@@ -118,12 +121,14 @@ export class HomePage {
   getUserJobDetail() {
     // this.loaderService.presentLoading();
     this.jobCheckInService.getJobDetail().subscribe(
-      (resp) => {
+      (resp :any) => {
         // this.loaderService.dismissLoading();
         console.log(resp);
         
-        if(resp) {
-          this.jobDetail = resp;
+        if(resp.length) {
+          this.location = resp['job']['location'];
+          this.start_time = resp['job']['start_time'];
+          this.end_time = resp['job']['end_time'];
           this.showData = true;
         }
         else {
